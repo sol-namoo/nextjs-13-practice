@@ -7,7 +7,10 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "연습용 제품 사이트",
+  title: {
+    default: "연습용 제품 사이트",
+    template: "%s | 연습용 제품 사이트",
+  },
   description: "멋진 제품을 판매합니다",
   icons: { icon: "/favicon.ico" },
 };
