@@ -16,24 +16,26 @@ export function generateMetadata({ params }: Props) {
 
 export default async function postPage({ params }: Props) {
   const data = await getPost(params.slug);
-  if (!data) {
+  if (!data?.crr?.content) {
     return notFound();
   }
-
-  console.log(data);
   return (
-    <>
-      {/** 본문 레이아웃 컴포넌트 */}
-      <div>
+    <main className='rounded-lg overflow-hidden'>
+      <section className='bg-slate-100'>
         <div>배너 영역</div>
         <h1>{data.crr.title}</h1>
         <div>{data.crr.description}</div>
-      </div>
-      <nav>
-        <Link href={`/posts/${data.prev?.path}`}>{data.prev?.title}</Link>
-        <Link href={`/posts/${data.next?.path}`}>{data.next?.title}</Link>
+        <div>{data.crr.content}</div>
+      </section>
+      <nav className='flex'>
+        <Link href={`/posts/${data.prev?.path}`} className='w-1/2'>
+          <div className='bg-slate-400'>{data.prev?.title}</div>
+        </Link>
+        <Link href={`/posts/${data.next?.path}`} className='w-1/2'>
+          <div className='bg-slate-800'>{data.next?.title}</div>
+        </Link>
       </nav>
-    </>
+    </main>
   );
 }
 

@@ -23,11 +23,13 @@ export default function RootLayout({
     <html lang='ko'>
       <body className={inter.className + ' container mx-auto'}>
         <header className='flex justify-between'>
-          <h1>{"Solnamoo's blog"}</h1>
-          <nav className='flex flex space-x-4 ml-auto'>
+          <Link href='/home'>
+            <h1 className='text-2xl font-medium'>{"Solnamoo's blog"}</h1>
+          </Link>
+          <nav className='flex space-x-4 ml-auto'>
             <Link href='/home'>Home</Link>
             <Link href='/about'>About</Link>
-            <Link href='/posts'>Products</Link>
+            <Link href='/posts'>Posts</Link>
             <Link href='/contact'>Contact</Link>
           </nav>
         </header>
