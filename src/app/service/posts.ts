@@ -8,7 +8,7 @@ export type Post = {
   category: string;
   path: string;
   featured: boolean;
-  content?: string;
+  content: string;
   image?: string;
 };
 
@@ -21,13 +21,14 @@ export type PostView = {
 export async function getPosts(filter?: string | null): Promise<Post[]> {
   const filePath = path.join(process.cwd(), 'data', 'posts.json');
   const posts = await fs.readFile(filePath, 'utf-8');
-  return JSON.parse(posts).filter((post: Post) => {
-    if (filter) {
-      return post.category === filter;
-    } else {
-      return post;
-    }
-  });
+
+  if (filter) {
+    return JSON.parse(posts).filter((post: Post) => {
+      post.category === filter;
+    });
+  } else {
+    return JSON.parse(posts);
+  }
 }
 
 export async function getPost(crrPath: string): Promise<PostView | undefined> {
