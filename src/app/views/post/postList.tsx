@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { getPosts } from '@/app/service/posts';
-import PostCard from '@/app/views/post/postCard';
+import Link from "next/link";
+import { getPosts } from "@/app/service/posts";
+import PostCard from "@/app/views/post/PostCard";
 
 export default async function PostList() {
   const posts = await getPosts();

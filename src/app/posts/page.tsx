@@ -1,8 +1,8 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import categories from '@/app/data/category';
-import { getPosts } from '@/app/service/posts';
-import PostCard from '@/app/views/post/postCard';
+import categories from "@/app/data/category";
+import { getPosts } from "@/app/service/posts";
+import PostCard from "@/app/views/post/PostCard";
 
 export const revalidate = 60;
 
@@ -11,12 +11,12 @@ export default async function PostsPage({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const posts = await getPosts(searchParams['category'] as string);
+  const posts = await getPosts(searchParams["category"] as string);
 
   return (
     <>
-      <main className='flex'>
-        <ul className='grow columns-3'>
+      <main className="flex">
+        <ul className="grow columns-3">
           {posts.map((post, index) => (
             <Link key={index} href={`/posts/${post.path}`}>
               <li>
@@ -27,7 +27,7 @@ export default async function PostsPage({
         </ul>
         <aside>
           <ul>
-            <li key={'all'}>
+            <li key={"all"}>
               <Link href={`/posts?category`}>All posts</Link>
             </li>
             {categories.map((category, index) => (
