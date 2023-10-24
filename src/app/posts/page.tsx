@@ -11,7 +11,7 @@ export default async function PostsPage({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const posts = await getPosts(searchParams["category"] as string);
+  const posts = await getPosts("category", searchParams["category"] as string);
 
   return (
     <>

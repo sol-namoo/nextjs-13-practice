@@ -6,8 +6,10 @@ export default async function ContactPage() {
 
   return (
     <>
-      <h1>home</h1>
-      <CardCarousel posts={posts} />
+      <h1>Featured Posts</h1>
+      <CardCarousel posts={posts.filter((post) => post.featured === true)} />
+      <h1>You may also like</h1>
+      <CardCarousel posts={posts.filter((post) => post.featured === false)} />
     </>
   );
 }

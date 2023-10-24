@@ -2,6 +2,7 @@ import path from "path";
 import { promises as fs } from "fs";
 
 export type Post = {
+  [key: string]: string | boolean | undefined;
   title: string;
   description: string;
   date: string;
@@ -18,12 +19,17 @@ export type PostView = {
   next?: Post;
 };
 
-export async function getPosts(filter?: string | null): Promise<Post[]> {
+export async function getPosts(
+  filterType?: string,
+  filter?: string | boolean | undefined
+): Promise<Post[]> {
   const filePath = path.join(process.cwd(), "data", "posts.json");
   const posts = await fs.readFile(filePath, "utf-8");
 
-  if (filter) {
-    return JSON.parse(posts).filter((post: Post) => post.category === filter);
+  if (filterType && filter) {
+    return JSON.parse(posts).filter(
+      (post: Post) => post[filterType] === filter
+    );
   } else {
     return JSON.parse(posts);
   }
