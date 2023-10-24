@@ -1,5 +1,5 @@
-import path from 'path';
-import { promises as fs } from 'fs';
+import path from "path";
+import { promises as fs } from "fs";
 
 export type Post = {
   title: string;
@@ -19,13 +19,11 @@ export type PostView = {
 };
 
 export async function getPosts(filter?: string | null): Promise<Post[]> {
-  const filePath = path.join(process.cwd(), 'data', 'posts.json');
-  const posts = await fs.readFile(filePath, 'utf-8');
+  const filePath = path.join(process.cwd(), "data", "posts.json");
+  const posts = await fs.readFile(filePath, "utf-8");
 
   if (filter) {
-    return JSON.parse(posts).filter((post: Post) => {
-      post.category === filter;
-    });
+    return JSON.parse(posts).filter((post: Post) => post.category === filter);
   } else {
     return JSON.parse(posts);
   }
@@ -34,7 +32,7 @@ export async function getPosts(filter?: string | null): Promise<Post[]> {
 export async function getPost(crrPath: string): Promise<PostView | undefined> {
   const posts = await getPosts();
   let crrIndex = -1;
-  let content = '';
+  let content = "";
 
   for (let i = 0; i < posts.length; i++) {
     if (posts[i].path === crrPath) {
@@ -46,11 +44,11 @@ export async function getPost(crrPath: string): Promise<PostView | undefined> {
   if (crrIndex > -1) {
     const filePath = path.join(
       process.cwd(),
-      'data',
-      'posts',
-      `${posts[crrIndex].path}.md`,
+      "data",
+      "posts",
+      `${posts[crrIndex].path}.md`
     );
-    content = await fs.readFile(filePath, 'utf-8');
+    content = await fs.readFile(filePath, "utf-8");
     posts[crrIndex].content = content;
   }
 

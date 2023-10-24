@@ -18,17 +18,15 @@ export default async function PostsPage({
       <main className="flex">
         <ul className="grow columns-3">
           {posts.map((post, index) => (
-            <Link key={index} href={`/posts/${post.path}`}>
-              <li>
-                <PostCard post={post} />
-              </li>
-            </Link>
+            <li key={index}>
+              <PostCard post={post} />
+            </li>
           ))}
         </ul>
         <aside>
           <ul>
             <li key={"all"}>
-              <Link href={`/posts?category`}>All posts</Link>
+              <Link href={`/posts`}>All posts</Link>
             </li>
             {categories.map((category, index) => (
               <li key={index}>
